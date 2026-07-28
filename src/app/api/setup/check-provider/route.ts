@@ -521,7 +521,8 @@ export async function POST(req: Request) {
       case 'fireworks':
       case 'nebius':
       case 'requesty':
-      case 'deepinfra': {
+      case 'deepinfra':
+      case 'minimax': {
         const info = OPENAI_COMPATIBLE_DEFAULTS[provider]
         if (!apiKey) return NextResponse.json({ ok: false, message: `${info.name} API key is required.` })
         const result = await checkOpenAiCompatible(info.name, apiKey, endpoint, info.defaultEndpoint, model)

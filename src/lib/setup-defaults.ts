@@ -264,6 +264,18 @@ export const SETUP_PROVIDERS: SetupProviderOption[] = [
     modelLibraryUrl: 'https://deepinfra.com/models',
   },
   {
+    id: 'minimax',
+    name: 'MiniMax',
+    description: 'MiniMax M-series reasoning and multimodal models through an OpenAI-compatible API, with global and China regional endpoints.',
+    requiresKey: true,
+    supportsEndpoint: true,
+    defaultEndpoint: 'https://api.minimax.io/v1',
+    keyUrl: 'https://platform.minimax.io',
+    keyLabel: 'platform.minimax.io',
+    icon: 'M',
+    modelLibraryUrl: 'https://platform.minimax.io/docs/api-reference/api-overview',
+  },
+  {
     id: 'ollama',
     name: 'Ollama',
     description: 'Run local open-source models or connect to Ollama Cloud.',

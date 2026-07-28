@@ -129,6 +129,7 @@ describe('provider-health', () => {
     assert.ok(defaults.mistral)
     assert.ok(defaults.xai)
     assert.ok(defaults.fireworks)
+    assert.ok(defaults.minimax)
     assert.ok(defaults.hermes)
     assert.ok(defaults.lmstudio)
 

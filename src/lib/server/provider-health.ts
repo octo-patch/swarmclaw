@@ -272,6 +272,7 @@ export const OPENAI_COMPATIBLE_DEFAULTS: Record<string, { name: string; defaultE
   fireworks: { name: 'Fireworks AI', defaultEndpoint: 'https://api.fireworks.ai/inference/v1' },
   nebius: { name: 'Nebius', defaultEndpoint: 'https://api.tokenfactory.nebius.com/v1' },
   deepinfra: { name: 'DeepInfra', defaultEndpoint: 'https://api.deepinfra.com/v1/openai' },
+  minimax: { name: 'MiniMax', defaultEndpoint: 'https://api.minimax.io/v1' },
   hermes: { name: 'Hermes Agent', defaultEndpoint: 'http://127.0.0.1:8642/v1' },
   lmstudio: { name: 'LM Studio', defaultEndpoint: 'http://127.0.0.1:1234/v1' },
 }
