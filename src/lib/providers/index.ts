@@ -15,10 +15,11 @@ import { streamOllamaChat } from './ollama'
 import { streamAnthropicChat } from './anthropic'
 import { streamOpenClawChat } from './openclaw'
 import { normalizeLmStudioEndpoint, normalizeOpenAiCompatibleV1Endpoint } from './openai-compatible-endpoint'
+import { isMiniMaxAnthropicEndpoint, MINIMAX_OPENAI_BASE_URL } from './minimax'
 import { errorMessage, sleep, jitteredBackoff } from '@/lib/shared-utils'
 import { classifyProviderError } from './error-classification'
 import { log } from '@/lib/server/logger'
-import type { ProviderInfo, ProviderConfig as CustomProviderConfig, ProviderType, ProviderId } from '../../types'
+import type { ProviderInfo, ProviderConfig as CustomProviderConfig, ProviderId } from '../../types'
 import { loadProviderConfigs, loadModelOverrides, loadStoredItem, loadCredentials, decryptKey } from '@/lib/server/storage'
 import { getExtensionManager } from '@/lib/server/extensions'
 
@@ -513,21 +514,21 @@ export const PROVIDERS: Record<string, BuiltinProviderConfig> = {
   minimax: {
     id: 'minimax',
     name: 'MiniMax',
-    // MiniMax exposes an OpenAI-compatible chat completions API. The global
-    // endpoint (https://api.minimax.io/v1) is the default; callers can point
-    // apiEndpoint at the China endpoint (https://api.minimaxi.com/v1) or the
-    // Anthropic-compatible endpoint (https://api.minimax.io/anthropic).
     models: ['MiniMax-M3', 'MiniMax-M2.7'],
     requiresApiKey: true,
     requiresEndpoint: false,
-    defaultEndpoint: 'https://api.minimax.io/v1',
+    optionalEndpoint: true,
+    defaultEndpoint: MINIMAX_OPENAI_BASE_URL,
     handler: {
       streamChat: (opts) => {
+        const apiEndpoint = opts.session.apiEndpoint || MINIMAX_OPENAI_BASE_URL
         const patchedSession = {
           ...opts.session,
-          apiEndpoint: opts.session.apiEndpoint || 'https://api.minimax.io/v1',
+          apiEndpoint,
         }
-        return streamOpenAiChat({ ...opts, session: patchedSession })
+        return isMiniMaxAnthropicEndpoint(apiEndpoint)
+          ? streamAnthropicChat({ ...opts, session: patchedSession })
+          : streamOpenAiChat({ ...opts, session: patchedSession })
       },
     },
   },

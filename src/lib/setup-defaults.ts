@@ -5,6 +5,7 @@
 
 import { CLI_PROVIDER_METADATA, type CliProviderId, type CliProviderMetadata } from './providers/cli-provider-metadata.ts'
 import type { ProviderType } from '../types/provider.ts'
+import { MINIMAX_OPENAI_BASE_URL } from './providers/minimax'
 
 export type SetupProvider = ProviderType | 'custom'
 
@@ -269,7 +270,7 @@ export const SETUP_PROVIDERS: SetupProviderOption[] = [
     description: 'MiniMax M-series reasoning and multimodal models through an OpenAI-compatible API, with global and China regional endpoints.',
     requiresKey: true,
     supportsEndpoint: true,
-    defaultEndpoint: 'https://api.minimax.io/v1',
+    defaultEndpoint: MINIMAX_OPENAI_BASE_URL,
     keyUrl: 'https://platform.minimax.io',
     keyLabel: 'platform.minimax.io',
     icon: 'M',
@@ -887,6 +888,13 @@ export const DEFAULT_AGENTS = {
     description: 'A helpful assistant powered by DeepInfra.',
     systemPrompt: SWARMCLAW_ASSISTANT_PROMPT,
     model: 'deepseek-ai/DeepSeek-V3.2',
+    tools: STARTER_AGENT_TOOLS,
+  },
+  minimax: {
+    name: 'MiniMax Agent',
+    description: 'A helpful assistant powered by MiniMax.',
+    systemPrompt: SWARMCLAW_ASSISTANT_PROMPT,
+    model: 'MiniMax-M3',
     tools: STARTER_AGENT_TOOLS,
   },
   ollama: {
