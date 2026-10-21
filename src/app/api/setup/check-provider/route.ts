@@ -534,7 +534,7 @@ export async function POST(req: Request) {
         if (!apiKey) return NextResponse.json({ ok: false, message: `${info.name} API key is required.` })
         const result = isMiniMaxAnthropicEndpoint(endpoint)
           ? await checkAnthropic(apiKey, endpoint, model || 'MiniMax-M3.1-Flash', info.name)
-          : await checkOpenAiCompatible(info.name, apiKey, endpoint, info.defaultEndpoint, model)
+          : await checkOpenAiCompatible(info.name, apiKey, endpoint, info.defaultEndpoint, model || 'MiniMax-M3.1-Flash')
         return NextResponse.json(result)
       }
       case 'hermes': {
