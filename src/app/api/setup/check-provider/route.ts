@@ -103,6 +103,7 @@ async function checkOpenAiCompatible(
       DeepInfra: 'deepseek-ai/DeepSeek-R1-0528',
       OpenRouter: 'openai/gpt-4.1-mini',
       'Hermes Agent': 'hermes-agent',
+      MiniMax: 'MiniMax-M3.1-Flash',
       'LM Studio': 'local-model',
     }
     testModel = fallbacks[providerName] || 'gpt-4o-mini'
@@ -532,7 +533,7 @@ export async function POST(req: Request) {
         const info = OPENAI_COMPATIBLE_DEFAULTS.minimax
         if (!apiKey) return NextResponse.json({ ok: false, message: `${info.name} API key is required.` })
         const result = isMiniMaxAnthropicEndpoint(endpoint)
-          ? await checkAnthropic(apiKey, endpoint, model || 'MiniMax-M3', info.name)
+          ? await checkAnthropic(apiKey, endpoint, model || 'MiniMax-M3.1-Flash', info.name)
           : await checkOpenAiCompatible(info.name, apiKey, endpoint, info.defaultEndpoint, model)
         return NextResponse.json(result)
       }

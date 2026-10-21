@@ -42,13 +42,13 @@ test('TokenMix has setup metadata and a default agent model', () => {
   assert.equal(getDefaultModelForProvider('tokenmix'), 'claude-sonnet-4-6')
 })
 
-test('MiniMax has regional endpoint setup metadata and the M3 default model', () => {
+test('MiniMax has regional endpoint setup metadata and the M3.1-Flash default model', () => {
   const provider = SETUP_PROVIDERS.find((candidate) => candidate.id === 'minimax')
   assert.ok(provider, 'minimax should appear in setup providers')
   assert.equal(provider.defaultEndpoint, 'https://api.minimax.io/v1')
   assert.equal(provider.supportsEndpoint, true)
   assert.equal(provider.requiresKey, true)
-  assert.equal(getDefaultModelForProvider('minimax'), 'MiniMax-M3')
+  assert.equal(getDefaultModelForProvider('minimax'), 'MiniMax-M3.1-Flash')
 })
 
 test('getDefaultModelForProvider returns non-empty for anthropic', () => {

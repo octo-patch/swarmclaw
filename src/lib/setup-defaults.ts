@@ -894,7 +894,7 @@ export const DEFAULT_AGENTS = {
     name: 'MiniMax Agent',
     description: 'A helpful assistant powered by MiniMax.',
     systemPrompt: SWARMCLAW_ASSISTANT_PROMPT,
-    model: 'MiniMax-M3',
+    model: 'MiniMax-M3.1-Flash',
     tools: STARTER_AGENT_TOOLS,
   },
   ollama: {

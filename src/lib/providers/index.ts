@@ -514,7 +514,7 @@ export const PROVIDERS: Record<string, BuiltinProviderConfig> = {
   minimax: {
     id: 'minimax',
     name: 'MiniMax',
-    models: ['MiniMax-M3', 'MiniMax-M2.7'],
+    models: ['MiniMax-M3.1-Flash', 'MiniMax-M3'],
     requiresApiKey: true,
     requiresEndpoint: false,
     optionalEndpoint: true,
